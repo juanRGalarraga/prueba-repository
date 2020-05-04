@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <style>
+        body {
+            background-color: red; 
+            background-image: url(back-g2.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .container {
+            background-color: rgba(248, 188, 24, 0.40); 
+            font-family: "Times New Roman", Times, serif;
+        }
+        footer {
+            background-color: black;
+        }
+        label {
+            color: white;
+        }
+        #titleForm {
+            font-size: 200%;
+        }
+        #tabPanel {
+            color: #FFFFFF;
+        }
+
+    </style>
+</head>
+<body>
+    <h3 class="text-center bg-dark text-white"> Gestor de Registros </h3>
+    <div id="app">
+    <div class="container pt-3 mt-5" style="min-height: 450px">
+    <!-- FILA DE REGISTROS-->
+    <div class="row">
+        <!--COLUMNA DE FORMULARIO-->
+        <div class="col-sm">
+            <h4 class="display-5" id="titleForm">Agregar un registro</h4>
+            <form>
+               <div class="form-row">
+                   <div class="form-group col-md-6">
+                       <label for="inputName">Nombre</label>
+                       <input type="text" class="form-control" id="inputName" v-model="nameKeep" required maxlength="15">
+                   </div>
+                   <div class="form-group col-md-6">
+                       <label for="inputSurname">Apellido</label>
+                       <input type="text" id="inputSurname" class="form-control" v-model="surnKeep" required maxlength="15">
+                   </div>
+                </div>  
+                <div class="form-group">
+                   <label for="inputEmail">Email</label>
+                   <input type="email" id="inputEmail" class="form-control" v-model="emailKeep" required>
+                </div>
+                <div class="form-group">
+                   <label for="inputDate">Fecha de nacimiento</label>
+                   <input type="date" id="inputDate" class="form-control" v-model="dateKeep" required>
+                </div>                         
+            </form> 
+            <hr>
+            <button class="btn btn-primary btn-lg btn-block"  v-bind:class="[nameKeep.length < 3 ? 'disabled' : 'addKeep']">Agregar</button>
+        </div>
+        <!--COLUMNA DE LISTA DE REGISTROS-->
+        <div class="col-sm">
+            <!--TABS--->
+            <ul class="nav nav-tabs nav-fill" id="tabPanel">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#listado" data-toggle="tab">Listado de Registros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#codigo" data-toggle="tab">Codigo Json</a>
+                </li>
+            </ul>
+
+            <div class="row-sm-12 pt-1">
+                <button data-toggle="collapse" data-target="#list">Ocultar</button>
+                 <input type="" name="" placeholder="Buscar">
+                <button>Ordenar</button>
+            </div>
+
+            <!--PANEL REGISTROS-->
+            <div class="tab-content collapse show" id="list">
+              <div class="tab-pane show active" role="tabpanel" id="listado">
+                <div class="row mb-3 mt-3" v-for="(item, index) in lists">
+                    <div class="col-md-3">
+                        <a @click='delKeep(index)' class="text-white btn btn-dark" style="width: 100px; height: 30px">Eliminar</a>
+                        <img src="img_avatar1.png" style="width: 100px; height: 80px">
+                    </div>
+                    <div class="col-md-6 bg-light" id="cardUser">
+                        <span class="font-weight-bold">Nombre:</span>{{ item.nameKeep }}<br>
+                        <span class="font-weight-bold">Apellido:</span>{{ item.surnKeep }}<br>
+                        <span class="font-weight-bold">Fecha Nac.:</span>{{ item.dateKeep }}<br>
+                        <span class="font-weight-bold">Email: </span>{{ item.emailKeep }}
+                    </div>
+                </div>              
+              </div>
+              <!--PANEL CODIGO FUENTE-->
+              <div class="tab-pane fade" role="tabpanel" id="codigo">
+                 <div class="col-sm">
+                     <pre>
+                        {{ $data | json }}
+                     </pre>
+                 </div>                     
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <!--FOOTER-->
+    <footer class="fixed-bottom bg-dark text-white">
+        <div class="row justify-content-md-center">
+            <p class="text-center mute">
+             Juan Galarraga - Copyright 2020
+            </p> 
+        </div>
+    </footer>
+<!-- ======SCRIPT======= -->
+    <script src="vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
