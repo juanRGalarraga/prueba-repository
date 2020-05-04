@@ -20,14 +20,6 @@ new Vue({
 
 		delKeep: function(index){
 			this.lists.splice (index, 1);
-		},
-
-		formRequired: function (){
-			if (this.nameKeep.length < 3 && this.nameKeep.length < 3) {
-				return disable;
-			} else {
-				return !disable;
-			}
 		}
 	}
 });

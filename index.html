@@ -66,17 +66,17 @@
                 </div>                         
             </form> 
             <hr>
-            <button class="btn btn-primary btn-lg btn-block"  v-bind:class="[nameKeep.length < 3 ? 'disabled' : 'addKeep']">Agregar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click='addKeep'>Agregar</button>
         </div>
         <!--COLUMNA DE LISTA DE REGISTROS-->
         <div class="col-sm">
             <!--TABS--->
             <ul class="nav nav-tabs nav-fill" id="tabPanel">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#listado" data-toggle="tab">Listado de Registros</a>
+                    <a class="nav-link active text-white bg-dark" href="#listado" data-toggle="tab">Listado de Registros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#codigo" data-toggle="tab">Codigo Json</a>
+                    <a class="nav-link text-white bg-dark" href="#codigo" data-toggle="tab">Codigo Json</a>
                 </li>
             </ul>
 
